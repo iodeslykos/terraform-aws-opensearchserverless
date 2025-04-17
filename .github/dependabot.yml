@@ -2,12 +2,6 @@ version: 2
 updates:
   - package-ecosystem: "github-actions"
     directory: "/"
-    dependency-type: "production"
-    update-types:
-      - "version-update:semver-major"
-      - "version-update:semver-minor"
-      - "version-update:semver-patch"
-    versioning-strategy: increase
     schedule:
       interval: "daily"
     commit-message:
