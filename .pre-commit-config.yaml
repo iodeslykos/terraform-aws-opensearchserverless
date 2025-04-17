@@ -1,0 +1,56 @@
+default_install_hook_types:
+  - commit-msg
+  - pre-commit
+  - pre-push
+
+fail_fast: true
+
+repos:
+  - repo: https://gitlab.com/vojko.pribudic.foss/pre-commit-update
+    rev: v0.6.1
+    hooks:
+      - id: pre-commit-update
+        args: [--dry-run]
+  - repo: https://github.com/compilerla/conventional-pre-commit
+    rev: v4.0.0
+    hooks:
+      - id: conventional-pre-commit
+        stages: [commit-msg]
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      # Safety.
+      - id: no-commit-to-branch
+        args: [--branch, trunk, --branch, main]
+      - id: detect-aws-credentials
+        args: [--allow-missing-credentials]
+      - id: detect-private-key
+      # Style and sanity.
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: mixed-line-ending
+      - id: check-merge-conflict
+      - id: check-json
+      - id: check-yaml
+        args:
+          - --allow-multiple-documents
+  - repo: https://github.com/antonbabenko/pre-commit-terraform
+    rev: v1.99.0
+    hooks:
+      - id: terraform_fmt
+        args: [--args=-diff]
+      - id: terraform_wrapper_module_for_each
+      - id: terraform_tflint
+        args: [--hook-config=--delegate-chdir]
+      - id: terraform_docs
+        args:
+          [
+            --hook-config=--lockfile=false,
+            --hook-config=--create-file-if-not-exist=true,
+          ]
+      - id: terraform_validate
+        args: [--args=--hook-config=retry-once-with-cleanup=true]
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.24.3
+    hooks:
+      - id: gitleaks
