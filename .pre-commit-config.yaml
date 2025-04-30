@@ -7,12 +7,12 @@ fail_fast: true
 
 repos:
   - repo: https://gitlab.com/vojko.pribudic.foss/pre-commit-update
-    rev: v0.6.1
+    rev: v0.7.0
     hooks:
       - id: pre-commit-update
         args: [--dry-run]
   - repo: https://github.com/compilerla/conventional-pre-commit
-    rev: v4.0.0
+    rev: v4.1.0
     hooks:
       - id: conventional-pre-commit
         stages: [commit-msg]
@@ -51,6 +51,6 @@ repos:
       - id: terraform_validate
         args: [--args=--hook-config=retry-once-with-cleanup=true]
   - repo: https://github.com/gitleaks/gitleaks
-    rev: v8.24.3
+    rev: v8.25.0
     hooks:
       - id: gitleaks
