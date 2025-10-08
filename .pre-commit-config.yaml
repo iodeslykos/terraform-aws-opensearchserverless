@@ -7,17 +7,17 @@ fail_fast: true
 
 repos:
   - repo: https://gitlab.com/vojko.pribudic.foss/pre-commit-update
-    rev: v0.7.0
+    rev: v0.8.0
     hooks:
       - id: pre-commit-update
         args: [--dry-run]
   - repo: https://github.com/compilerla/conventional-pre-commit
-    rev: v4.1.0
+    rev: v4.2.0
     hooks:
       - id: conventional-pre-commit
         stages: [commit-msg]
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
+    rev: v6.0.0
     hooks:
       # Safety.
       - id: no-commit-to-branch
@@ -35,7 +35,7 @@ repos:
         args:
           - --allow-multiple-documents
   - repo: https://github.com/antonbabenko/pre-commit-terraform
-    rev: v1.99.0
+    rev: v1.101.0
     hooks:
       - id: terraform_fmt
         args: [--args=-diff]
@@ -51,6 +51,6 @@ repos:
       - id: terraform_validate
         args: [--args=--hook-config=retry-once-with-cleanup=true]
   - repo: https://github.com/gitleaks/gitleaks
-    rev: v8.25.0
+    rev: v8.28.0
     hooks:
       - id: gitleaks
